@@ -4,11 +4,11 @@
   <img src="https://img.shields.io/badge/Node.js-20+-68a063.svg?style=flat-square&logo=node.js" alt="Node.js 20+" />
   <img src="https://img.shields.io/badge/pnpm-10+-f69220.svg?style=flat-square&logo=pnpm" alt="pnpm 10+" />
   <img src="https://img.shields.io/badge/Parser-MinerU-ff6b6b.svg?style=flat-square" alt="MinerU" />
-  <img src="https://img.shields.io/badge/Platform-Desktop%20Web%20%7C%20Obsidian-705dcf.svg?style=flat-square&logo=obsidian" alt="Obsidian & Web" />
+  <img src="https://img.shields.io/badge/Platform-Desktop%20Web-705dcf.svg?style=flat-square" alt="Desktop Web" />
   <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License MIT" />
 </p>
 
-**PDF2Obsidian** 是一款专为**医学科研人员与临床研究者**打造的 **Local-First（本地优先）** 学术文献研读工具。依托 [MinerU](https://github.com/opendatalab/MinerU) 高精度版面解析与大语言模型，将复杂的医学 PDF 文献转化为结构化的双语精读笔记、机制流程图与 Obsidian 知识库资产。
+**PDF2Obsidian** 是一款专为**医学科研人员与临床研究者**打造的 **Local-First（本地优先）** 学术文献研读工具。依托 [MinerU](https://github.com/opendatalab/MinerU) 高精度版面解析与大语言模型，将复杂的医学 PDF 文献转化为结构化的双语精读笔记与机制流程图，输出标准 Markdown 资产（可直接用于 Obsidian 知识库）。
 
 ---
 
@@ -19,15 +19,6 @@
 - **🔬 机制与研究脉络图解**：顺着论文逻辑主线自动提炼研究设计、实验路径与分子/临床机制，生成 Mermaid 流程图、结构化摘要、**医学专业术语对照表**及深度问答。
 - **🏛️ 期刊分区与文献元数据补全**：支持 DOI / arXiv / 本地 PDF 导入，可选集成 CrossRef、OpenAlex 与 EasyScholar，直观显示中科院分区、JCR 分区与影响因子（IF）。
 - **🔒 本地优先与隐私安全**：所有解析缓存、PDF 渲染与笔记均在本地完成，支持对接本地 Ollama 模型，适合处理未发表课题、内部资料与敏感文献。
-
----
-
-## 🖥️ 两种使用方式
-
-| 模式 | 适用场景 | 特点 |
-| :--- | :--- | :--- |
-| **Desktop Web 工作台** | 日常文献初筛、快速双语精读 | 浏览器打开即用，无需安装 Obsidian 与配置 Vault 目录 |
-| **Obsidian 原生插件** | 长期文献沉淀、课题双链笔记管理 | 原生嵌入 Obsidian 分屏视图，笔记与配图直接写入 Vault |
 
 ---
 
@@ -44,17 +35,11 @@ cd PDF2Obsidian
 pnpm install --frozen-lockfile
 ```
 
-### 2. 方式 A：启动 Desktop Web 工作台（推荐）
+### 2. 启动 Desktop Web 工作台
 ```bash
 npm run dev
 ```
 启动后访问 **[http://127.0.0.1:3001](http://127.0.0.1:3001)**，可在界面右上角 **设置 (Settings)** 中直接配置 API 密钥与输出目录。
-
-### 3. 方式 B：构建 Obsidian 插件
-```bash
-npm run build:plugin
-```
-将 `apps/obsidian-plugin/` 目录下生成的 `main.js`、`manifest.json`、`styles.css` 复制到你的知识库目录 `<Vault>/.obsidian/plugins/pdf2obsidian/`，在 Obsidian 第三方插件设置中启用即可。
 
 ---
 
@@ -70,7 +55,7 @@ npm run build:plugin
 
 ## 📂 生成的文献资产结构
 
-每篇论文解析完成后，会在本地输出目录或 Obsidian Vault 中生成一套完整笔记：
+每篇论文解析完成后，会在本地输出目录生成一套结构化 Markdown 笔记（可直接导入 Obsidian）：
 
 ```text
 output/papers/<论文目录>/
@@ -94,7 +79,6 @@ output/papers/<论文目录>/
 | :--- | :--- |
 | `npm run dev` | 启动 Desktop Web 开发工作台（`127.0.0.1:3001`） |
 | `npm run build` | 构建 Web 工作台与全部基础包 |
-| `npm run build:plugin` | 构建 Obsidian 插件产物 |
 | `npm test` | 运行自动化测试套件 |
 | `npm run dev:cli -- import <file>` | CLI 命令行导入单篇 PDF |
 
