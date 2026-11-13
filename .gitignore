@@ -1,0 +1,34 @@
+node_modules
+dist
+.pipeline
+.DS_Store
+.next
+.idea
+*.db
+*.sqlite
+
+# 包含密钥/令牌的配置文件
+pdf2obsidian.config.yaml
+.env.local
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+
+output/*
+
+.pnpm-store/
+
+# Copied from the installed PDF.js package at build/start time
+apps/desktop-web/public/pdf.worker.min.mjs
+.agents
+.workbuddy
+
+planed
+
+# 日志、密钥与编辑器临时目录
+*.log
+*.pem
+*.key
+.vscode/
+.worktrees/

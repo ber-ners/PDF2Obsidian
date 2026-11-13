@@ -1,0 +1,34 @@
+{
+  "name": "@pdf2obsidian/obsidian-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PDF2obsidian academic paper dual-column reader, MinerU & LLM processing, and vault note persistence.",
+  "main": "main.js",
+  "scripts": {
+    "build": "node esbuild.config.mjs production",
+    "dev": "node esbuild.config.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@pdf2obsidian/core": "workspace:*",
+    "@pdf2obsidian/pipeline": "workspace:*",
+    "@pdf2obsidian/providers": "workspace:*",
+    "fflate": "^0.8.3",
+    "katex": "^0.19.1",
+    "pdfjs-dist": "4.10.38",
+    "pele": "^1.13.0",
+    "react": "19.2.7",
+    "react-dom": "19.2.7",
+    "yaml": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/katex": "^0.16.8",
+    "@types/node": "^24.0.0",
+    "@types/react": "19.2.16",
+    "@types/react-dom": "19.2.3",
+    "esbuild": "^0.28.0",
+    "obsidian": "^1.14.4",
+    "typescript": "^5.8.0"
+  }
+}

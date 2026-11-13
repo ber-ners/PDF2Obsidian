@@ -1,0 +1,227 @@
+/* PDF2obsidian Obsidian Plugin Styles */
+
+/* Import KaTeX stylesheet for math formula rendering */
+@import 'katex/dist/katex.min.css';
+
+/* Root variables for PDF2obsidian reader */
+:root {
+  --pdf2obsidian-title-color: #6366f1;
+  --pdf2obsidian-body-color: #0ea5e9;
+  --pdf2obsidian-equation-color: #10b981;
+  --pdf2obsidian-table-color: #f59e0b;
+  --pdf2obsidian-image-color: #f43f5e;
+  --pdf2obsidian-caption-color: #06b6d4;
+  --pdf2obsidian-reference-color: #8b5cf6;
+  --pdf2obsidian-active-border: var(--interactive-accent, #7c3aed);
+  --pdf2obsidian-active-glow: rgba(124, 58, 237, 0.25);
+}
+
+/* Plugin Reader View Container */
+.pdf2obsidian-reader-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--background-primary);
+  color: var(--text-normal);
+}
+
+/* Split Pane Layout */
+.pdf2obsidian-split-pane {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Left Column: PDF Viewport */
+.pdf2obsidian-pdf-column {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: auto;
+  background-color: var(--background-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  position: relative;
+}
+
+.pdf2obsidian-page-surface {
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 24px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+.pdf2obsidian-page-canvas {
+  display: block;
+}
+
+/* Bounding Box Overlays */
+.pdf2obsidian-bbox,
+button.pdf2obsidian-bbox,
+div.pdf2obsidian-bbox {
+  position: absolute;
+  box-sizing: border-box;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1px dashed rgba(14, 165, 233, 0.45) !important;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  padding: 0 !important;
+  margin: 0 !important;
+  outline: none;
+  box-shadow: none !important;
+  border-radius: 2px !important;
+}
+
+.pdf2obsidian-bbox:hover,
+button.pdf2obsidian-bbox:hover,
+div.pdf2obsidian-bbox:hover {
+  background-color: rgba(14, 165, 233, 0.14) !important;
+  border: 1px solid rgba(14, 165, 233, 0.85) !important;
+  z-index: 10 !important;
+}
+
+.pdf2obsidian-bbox[data-role="title"] {
+  border-color: rgba(99, 102, 241, 0.5) !important;
+}
+.pdf2obsidian-bbox[data-role="title"]:hover {
+  background-color: rgba(99, 102, 241, 0.15) !important;
+}
+
+.pdf2obsidian-bbox[data-role="equation"] {
+  border-color: rgba(16, 185, 129, 0.5) !important;
+}
+.pdf2obsidian-bbox[data-role="equation"]:hover {
+  background-color: rgba(16, 185, 129, 0.15) !important;
+}
+
+.pdf2obsidian-bbox[data-role="table"] {
+  border-color: rgba(245, 158, 11, 0.5) !important;
+}
+.pdf2obsidian-bbox[data-role="table"]:hover {
+  background-color: rgba(245, 158, 11, 0.15) !important;
+}
+
+.pdf2obsidian-bbox[data-role="image"] {
+  border-color: rgba(244, 63, 94, 0.5) !important;
+}
+.pdf2obsidian-bbox[data-role="image"]:hover {
+  background-color: rgba(244, 63, 94, 0.15) !important;
+}
+
+.pdf2obsidian-bbox[data-active="true"],
+button.pdf2obsidian-bbox[data-active="true"],
+div.pdf2obsidian-bbox[data-active="true"] {
+  border: 2px solid var(--pdf2obsidian-active-border, #0284c7) !important;
+  background-color: var(--pdf2obsidian-active-glow, rgba(14, 165, 233, 0.22)) !important;
+  box-shadow: 0 0 0 2px var(--pdf2obsidian-active-glow, rgba(14, 165, 233, 0.22)) !important;
+  z-index: 20 !important;
+}
+
+/* Splitter */
+.pdf2obsidian-splitter {
+  width: 6px;
+  cursor: col-resize;
+  background-color: var(--background-modifier-border);
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+  z-index: 30;
+  user-select: none;
+}
+
+.pdf2obsidian-splitter:hover,
+.pdf2obsidian-splitter:active {
+  background-color: var(--interactive-accent);
+}
+
+.pdf2obsidian-splitter:focus-visible {
+  outline: 2px solid var(--interactive-accent);
+  outline-offset: 1px;
+}
+
+.pdf-block-box {
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.katex-error {
+  color: var(--text-error, #f43f5e);
+  font-family: var(--font-monospace);
+  background-color: rgba(244, 63, 94, 0.1);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+/* Right Column: Bilingual Viewport */
+.pdf2obsidian-bilingual-column {
+  flex: 1;
+  height: 100%;
+  overflow-y: auto;
+  padding: 24px 32px;
+  background-color: var(--background-primary);
+  line-height: 1.7;
+}
+
+.pdf2obsidian-bilingual-segment {
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.pdf2obsidian-bilingual-segment:hover {
+  background-color: var(--background-secondary);
+}
+
+.pdf2obsidian-bilingual-segment[data-active="true"] {
+  background-color: var(--background-secondary-alt);
+  border-left-color: var(--interactive-accent);
+  box-shadow: 0 0 0 1px var(--interactive-accent);
+}
+
+.pdf2obsidian-bilingual-en {
+  color: var(--text-normal);
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.pdf2obsidian-bilingual-zh {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  border-top: 1px dashed var(--background-modifier-border);
+  padding-top: 6px;
+}
+
+/* Pele Mermaid diagram theming for Obsidian */
+.pele,
+.pdf2obsidian-pele-diagram {
+  --pele-bg: var(--background-primary, #ffffff);
+  --pele-fg: var(--text-normal, #2e3338);
+  --pele-muted: var(--text-muted, #888888);
+  --pele-line: var(--text-muted, #666666);
+  --pele-surface: var(--background-secondary, #f2f3f5);
+  --pele-surface-alt: var(--background-secondary-alt, #e3e5e8);
+  --pele-border: var(--background-modifier-border, #d1d5db);
+  --pele-accent: var(--interactive-accent, #7c3aed);
+  --pele-font: var(--font-text, sans-serif);
+  --pele-radius: 6px;
+}
+
+.pdf2obsidian-pele-diagram svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+

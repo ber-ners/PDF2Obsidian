@@ -1,0 +1,27 @@
+{
+  "name": "pdf2obsidian-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/build-packages.mjs && node --test tests/*.test.mjs",
+    "test:plugin": "corepack pnpm --filter @pdf2obsidian/obsidian-plugin test",
+    "test:mineru": "node node_modules/typescript/bin/tsc -p packages/core/tsconfig.json && node --test tests/mineru.test.mjs",
+    "build:packages": "node scripts/build-packages.mjs",
+    "dev:cli": "corepack pnpm build:packages && corepack pnpm --filter @pdf2obsidian/cli dev",
+    "build:cli": "corepack pnpm build:packages && corepack pnpm --filter @pdf2obsidian/cli build",
+    "dev:oss": "corepack pnpm build:packages && corepack pnpm --filter @pdf2obsidian/desktop-web dev",
+    "build:oss": "corepack pnpm build:packages && corepack pnpm --filter @pdf2obsidian/desktop-web build",
+    "dev:plugin": "node apps/obsidian-plugin/esbuild.config.mjs --watch",
+    "build:plugin": "corepack pnpm build:packages && node apps/obsidian-plugin/esbuild.config.mjs production",
+    "typecheck:plugin": "node node_modules/typescript/bin/tsc -p apps/obsidian-plugin/tsconfig.json --noEmit",
+    "dev": "node scripts/workspace.mjs dev",
+    "build": "node scripts/workspace.mjs build",
+    "start": "node scripts/workspace.mjs start"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.8.0"
+  },
+  "packageManager": "pnpm@10.0.0"
+}
