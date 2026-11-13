@@ -4,21 +4,31 @@
   <img src="https://img.shields.io/badge/Node.js-20+-68a063.svg?style=flat-square&logo=node.js" alt="Node.js 20+" />
   <img src="https://img.shields.io/badge/pnpm-10+-f69220.svg?style=flat-square&logo=pnpm" alt="pnpm 10+" />
   <img src="https://img.shields.io/badge/Parser-MinerU-ff6b6b.svg?style=flat-square" alt="MinerU" />
+  <img src="https://img.shields.io/badge/Diagram-Pele%20%2F%20Mermaid-11a58c.svg?style=flat-square" alt="Pele Mermaid" />
   <img src="https://img.shields.io/badge/Platform-Desktop%20Web-705dcf.svg?style=flat-square" alt="Desktop Web" />
   <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License MIT" />
 </p>
 
-**PDF2Obsidian** 是一款专为**医学科研人员与临床研究者**打造的 **Local-First（本地优先）** 学术文献研读工具。依托 [MinerU](https://github.com/opendatalab/MinerU) 高精度版面解析与大语言模型，将复杂的医学 PDF 文献转化为结构化的双语精读笔记与机制流程图，输出标准 Markdown 资产（可直接用于 Obsidian 知识库）。
+**PDF2Obsidian** 是一款专为**医学科研人员与临床研究者**打造的 **Local-First（本地优先）** 学术文献研读工作台。依托 [MinerU](https://github.com/opendatalab/MinerU) 高精度版面解析与大语言模型，将复杂的医学 PDF 文献转化为**原文-双语联动阅读视图**、**可视化机制图解**与结构化 Markdown 知识资产（可直接导入 Obsidian 知识库）。
 
 ---
 
-## ✨ 为什么适合医学科研
+## ✨ 核心特性与医学科研增强
 
-- **📋 复杂表格与多栏版式高保真还原**：精准识别医学文献中的三线表（基线特征表、回归分析表）、插图、统计公式与参考文献，告别复制乱码。
-- **🎯 PDF 与双语正文双向精准联动**：左侧原版 PDF 识别框与右侧中英对照段落点击互相跳转定位，随时核对原文献的入排标准、给药剂量与统计学细节。
-- **🔬 机制与研究脉络图解**：顺着论文逻辑主线自动提炼研究设计、实验路径与分子/临床机制，生成 Mermaid 流程图、结构化摘要、**医学专业术语对照表**及深度问答。
-- **🏛️ 期刊分区与文献元数据补全**：支持 DOI / arXiv / 本地 PDF 导入，可选集成 CrossRef、OpenAlex 与 EasyScholar，直观显示中科院分区、JCR 分区与影响因子（IF）。
-- **🔒 本地优先与隐私安全**：所有解析缓存、PDF 渲染与笔记均在本地完成，支持对接本地 Ollama 模型，适合处理未发表课题、内部资料与敏感文献。
+- **🎯 左侧 PDF 与右侧 Markdown 双向精准对应**
+  - 基于 MinerU 版面坐标（Bounding Box）建立原版 PDF 与右侧 Markdown / 中英双语正文的区块级映射。
+  - 点击左侧 PDF 识别框（正文、三线表、插图、公式等），右侧即刻平滑滚动并高亮对应译文；点击右侧任意段落，左侧 PDF 自动跳转并聚焦对应页码与区块，方便随时核对原始文献中的入排标准、给药剂量、样本量与统计学细节。
+- **📊 基于 Pele 的 Mermaid 图表渲染与可视化图解**
+  - 集成轻量级渲染引擎 [pele](https://www.npmjs.com/package/pele) 原生渲染 Mermaid 流程图（支持缩放、拖拽平移与源码切换，纯本地渲染无需外网依赖）。
+  - 自动提炼医学文献的研究设计主线、试验流程与分子/临床机制，生成**全景阅读图解（`流程图.md`）**与辅助理解图表，帮助快速理清数十页复杂论文的逻辑脉络。
+- **📋 医学三线表与复杂公式高保真还原**
+  - 精准提取临床基线特征表、回归分析表、LaTeX 公式与高清插图，告别传统 PDF 复制导致的排版错乱与公式丢失。
+- **🌐 医学术语对照与结构化知识沉淀**
+  - 自动生成中英段落并列对照（`*.bilingual.md`）、结构化摘要、**医学专业术语对照表**及深度问答，降低长篇外文文献的阅读门槛。
+- **🏛️ 期刊分区与文献元数据补全**
+  - 支持 DOI / arXiv / 本地 PDF 导入，可选集成 CrossRef、OpenAlex 与 EasyScholar，直观展示中科院分区、JCR 分区与影响因子（IF）。
+- **🔒 本地优先与隐私安全**
+  - 所有解析缓存、PDF 渲染与笔记均在本地完成，支持对接本地 Ollama 模型，适合处理未发表课题、内部资料与敏感临床文献。
 
 ---
 
@@ -62,7 +72,7 @@ output/papers/<论文目录>/
 ├── <论文名>.md            # 规范化英文原文
 ├── <论文名>.zh.md         # 中文译文
 ├── <论文名>.bilingual.md  # 中英段落并列对照
-├── 流程图.md              # 研究脉络与机制图解（Mermaid）
+├── 流程图.md              # 研究脉络与机制图解（Pele / Mermaid）
 ├── 摘要.md                # 结构化核心摘要
 ├── 术语表.md              # 医学专业术语双语对照表
 ├── 问答.md                # 核心论点深度 Q&A
@@ -88,4 +98,4 @@ output/papers/<论文目录>/
 
 本项目基于 **[MIT License](LICENSE)** 开源。
 
-感谢 [MinerU](https://github.com/opendatalab/MinerU)、[PDF.js](https://mozilla.github.io/pdf.js/)、[KaTeX](https://katex.org/)、[Mermaid](https://mermaid.js.org/)、[EasyScholar](https://www.easyscholar.cc/) 与 [Obsidian](https://obsidian.md/) 等优秀的开源项目与学术工具。
+感谢 [MinerU](https://github.com/opendatalab/MinerU)、[PDF.js](https://mozilla.github.io/pdf.js/)、[KaTeX](https://katex.org/)、[Pele](https://www.npmjs.com/package/pele)、[Mermaid](https://mermaid.js.org/)、[EasyScholar](https://www.easyscholar.cc/) 与 [Obsidian](https://obsidian.md/) 等优秀的开源项目与学术工具。
